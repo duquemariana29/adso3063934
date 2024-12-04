@@ -72,6 +72,11 @@ nav.nav {
             fill: #7ACB16;
         }
 
+        svg.html {
+
+            fill: #e75822;
+        }
+
         &:hover {
             svg {
                 transform: scale(1.2);
@@ -228,3 +233,22 @@ body.emmet {
         }
     }
 }
+
+body.html {
+    background-color: #FFD4BF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23FFD4BF' cx='50' cy='0' r='50'/%3E%3Cg fill='%23ffcfb7' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffcaaf' cx='50' cy='100' r='50'/%3E%3Cg fill='%23ffc5a7' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffc09f' cx='50' cy='200' r='50'/%3E%3Cg fill='%23ffba97' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffb590' cx='50' cy='300' r='50'/%3E%3Cg fill='%23ffb088' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffab81' cx='50' cy='400' r='50'/%3E%3Cg fill='%23ffa679' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ffa072' cx='50' cy='500' r='50'/%3E%3Cg fill='%23ff9b6a' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ff9563' cx='50' cy='600' r='50'/%3E%3Cg fill='%23ff905c' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ff8a54' cx='50' cy='700' r='50'/%3E%3Cg fill='%23ff844d' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ff7f46' cx='50' cy='800' r='50'/%3E%3Cg fill='%23ff793e' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ff7337' cx='50' cy='900' r='50'/%3E%3Cg fill='%23ff6c2f' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FF6627' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+    menu {
+        a:is(:link, :visited) {
+            color: #ec5a26;
+
+            span {
+                background-color:#ec5a26;
+                border: 2px solid #f54100;
+            }
+        }
+    }
+}
+
+
