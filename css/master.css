@@ -56,7 +56,6 @@ nav.nav {
     left: 20px;
 
     a:is(:link, :visited) {
-        border: 2px solid #32451D;
         border-radius: 50%;
         background-color: rgb(255, 255, 255);
         height: 40px;
@@ -245,7 +244,7 @@ body.html {
 
             span {
                 background-color:#ec5a26;
-                border: 2px solid #f54100;
+                border: 2px solid #66301c;
             }
         }
     }
