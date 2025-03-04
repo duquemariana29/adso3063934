@@ -99,6 +99,18 @@ main {
                 width: 50px;
                 border: 1px solid #3d8d7a;
             }
+            #morcilla{
+                background-color: #fc0101f6;
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 0.4rem 0.4rem 0;
+                font-size: 1.4rem;
+                color: white;
+                width: 50px;
+                border: 1px solid #fc0101f6;
+            }
         }
     
 }
