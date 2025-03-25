@@ -4,10 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>00- Template</title>
+    <title>08- Images</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+        section img {
+            border: 4px solid #fff9ff;
+            background-color: #fff3;
+            border-radius: 10pxz;
+            width: 250px;
+            display: flex;
+            padding: 1rem;
+            margin: 1rem auto;
+        }
+    </style>
 </head>
 
 <body class="html">
@@ -19,10 +29,14 @@
     </nav>
     <main>
         <header class="header">
-            <h2>00- Template</h2>
-            <p>Description.</p>
+            <h2>08- Images</h2>
+            <p>Inserts an image.</p>
         </header>
         <section class="section">
+            <h3>Relative Path:</h3>
+            <img src="../02-html/images/saitama.png" alt="">
+            <h3>Absolute Path:</h3>
+            <img src="https://wallpapers.com/images/featured/anya-forger-xltycnoeykot1q35.jpg" alt="">
          </section>
     </main>
 </body>

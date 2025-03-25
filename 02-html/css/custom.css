@@ -1,0 +1,16 @@
+section.section {
+ img {
+     border: 4px solid #fff6;
+    border-radius: 50%;
+    margin: 2rem auto;
+    display: flex;
+    filter: grayscale(1);
+    transition: all 0.4s ease-in;
+    transform: scale(0.8);
+    width: 280px;
+    &:hover {
+      filter: grayscale(0);
+      transform: rotateY(-180deg);
+    }
+  }
+}
