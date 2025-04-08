@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15- Structure</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/master.css">
+    <style>
+        .main1 {
+            color: white;
+            display: grid;
+            grid-template-areas:
+                "headers headers headers"
+                "nav nav nav"
+                "sections sections aside"
+                "article article aside"
+                "footer footer footer";
+            grid-template-columns: 2fr 2fr 1fr;
+            grid-template-rows: 1fr 1fr 3fr 3fr 1fr;
+        }
+
+
+        .headers {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: headers;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: peru;
+            color: black;
+        }
+
+        .nav {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: nav;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightcoral;
+            color: black;
+        }
+
+        .sections {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: sections;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightseagreen;
+            color: black;
+        }
+
+        .article {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: article;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgreen;
+            color: black;
+        }
+
+        .aside {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: aside;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightskyblue;
+            color: black;
+        }
+
+        .footer {
+            border: 1px solid rgb(255, 255, 255);
+            grid-area: footer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: magenta;
+            color: black;
+        }
+    </style>
+</head>
+
+<body class="html">
+    <nav class="nav">
+        <a href="index.html">
+            <svg class="html" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+            </svg>
+        </a>
+    </nav>
+    <main>
+        <header class="header">
+            <h2>15- Structure</h2>
+            <p>Defines layout with non-semantic tags (old style).</p>
+        </header>
+        <section class="section">
+            <div class="main1">
+                <div class="headers">Header</div>
+                <div class="nav">Nav</div>
+                <div class="sections">Section</div>
+                <div class="article">Article</div>
+                <div class="aside">Aside</div>
+                <div class="footer">Footer</div>
+            </div>
+        </section>
+        
+    </main>
+</body>
+
+</html>
