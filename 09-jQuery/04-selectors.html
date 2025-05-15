@@ -6,8 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>04- selectors</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+        div.counter {
+            margin:1rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            output {
+                font-size: 6rem;
+            }
+            button {
+                cursor: pointer;
+                border: none;
+                background-color: transparent;
+                transition: transform 0.4s ease-in;
+                svg {
+                    width: 50px;
+                }
+                &.btn-subs {
+                    color: red;
+                }
+                &.btn-add {
+                    color: green;
+                }
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    </style>
 </head>
 
 <body class="jquery">
@@ -23,6 +52,21 @@
             <p>Select and manipulate DOM elements using jQuery selectors.</p>
         </header>
         <section class="section">
+            <div class="counter">
+                <button class="btn-subs">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      
+                </button>
+                <output>0</output>
+                <button class="btn-add">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      
+                </button>
+            </div>
          </section>
     </main>
 </body>
