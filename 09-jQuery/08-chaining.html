@@ -8,6 +8,19 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/master.css">
     <style>
+        button.btn{
+            display: flex;
+            cursor: pointer;
+            background-color: #fff9;
+            border: none;
+            margin: 1rem auto;
+            border-radius: 0.4rem;
+            padding: 0.8rem 1.2rem;
+            transition: transform 0.2s ease-in;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
          article.area {
             background: url(img/kikii.jpg) no-repeat center center;
             border-radius: 0.4rem;
@@ -20,9 +33,10 @@
 
             img.character {
                 position: absolute;
-                top: 50px;
-                left: 50px;
+                top: 10px;
+                left: 10px;
             }
+            
         }
     </style>
 </head>
@@ -40,11 +54,21 @@
             <p>Chain multiple jQuery methods for concise code.</p>
         </header>
         <section class="section">
+            <button class="btn">Animate</button>
              <article class="area">
             <img class="character" src="img/mary.png">
          </section>
     </main>
      <script src="js/jquery-3.7.1.min.js"></script>
-
+    <script>
+        $(document).ready(function (){
+            $('.btn').click(function(){
+                $('.character').animate({'left': '150px'})
+                                .animate({'top': '130px'})
+                                .animate({'left': '10px'})
+                                .animate({'top': '10px'})
+            })
+        })
+    </script>
 </body>
 </html>
