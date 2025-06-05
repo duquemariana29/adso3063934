@@ -6,8 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>08- chaining</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+         article.area {
+            background: url(img/kikii.jpg) no-repeat center center;
+            border-radius: 0.4rem;
+            border: 2px solid #fff;
+            overflow: hidden;
+            height: 300px;
+            margin: 2rem auto;
+            position: relative;
+            width: 300px;
+
+            img.character {
+                position: absolute;
+                top: 50px;
+                left: 50px;
+            }
+        }
+    </style>
 </head>
 
 <body class="jquery">
@@ -23,7 +40,11 @@
             <p>Chain multiple jQuery methods for concise code.</p>
         </header>
         <section class="section">
+             <article class="area">
+            <img class="character" src="img/mary.png">
          </section>
     </main>
+     <script src="js/jquery-3.7.1.min.js"></script>
+
 </body>
 </html>
