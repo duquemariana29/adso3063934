@@ -213,7 +213,27 @@ main {
                 width: 40px;
             }
 
-            &:hover span {
+            &:hover span.emmet {
+                border-radius: 50px;
+                width: 60px;
+                background-color: #6aae11;
+            }
+            &:hover span.pokedex {
+                border-radius: 50px;
+                width: 60px;
+                background-color: yellow;
+            }
+            &:hover span.html {
+                border-radius: 50px;
+                width: 60px;
+                background-color: #e75822;
+            }
+            &:hover span.jQuery {
+                border-radius: 50px;
+                width: 60px;
+                background-color:#0868ac;
+            }
+            &:hover span.css {
                 border-radius: 50px;
                 width: 60px;
             }
