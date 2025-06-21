@@ -112,7 +112,6 @@ function mostrarModal(poke) {
     modal.style.display = "block";
 }
 
-// Función de búsqueda
 function buscarPokemon() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     errorMessage.style.display = "none";
@@ -138,7 +137,6 @@ function buscarPokemon() {
     }
 }
 
-// Event listeners
 closeModal.addEventListener("click", () => {
     modal.style.display = "none";
 });
@@ -157,7 +155,6 @@ searchInput.addEventListener("keypress", (e) => {
     }
 });
 
-// Filtrado por tipo
 botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
     const botonId = event.currentTarget.id;
     listaPokemon.innerHTML = "";

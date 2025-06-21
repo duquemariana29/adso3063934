@@ -62,7 +62,6 @@ header {
     margin: 0 auto;
 }
 
-/* Estilos para centrar el logo */
 .logo-container {
     width: 100%;
     display: flex;
@@ -219,7 +218,6 @@ main {
     border-radius: 100vmax;
 }
 
-/* Estilos para los tipos de Pokémon */
 .normal {
     background-color: var(--type-normal);
     color: var(--clr-black);
@@ -310,7 +308,6 @@ main {
     color: var(--clr-black);
 }
 
-/* Estilos para el modal */
 .modal {
     display: none;
     position: fixed;
@@ -320,7 +317,7 @@ main {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -375,7 +372,6 @@ main {
     font-weight: 400;
 }
 
-/* Estilos para la barra de búsqueda */
 .search-container {
     width: 100%;
     max-width: 500px;
@@ -413,7 +409,6 @@ main {
     transform: scale(1.05);
 }
 
-/* Mensaje de error para búsqueda */
 .error-message {
     color: #ff3333;
     text-align: center;
@@ -423,11 +418,11 @@ main {
     text-transform: none;
 }
 
-body.pokedex{
+body.pokedex {
     background-color: #6F710D;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%236F710D' cx='50' cy='0' r='50'/%3E%3Cg fill='%2375770d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%237c7e0e' cx='50' cy='100' r='50'/%3E%3Cg fill='%2383840e' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23898b0e' cx='50' cy='200' r='50'/%3E%3Cg fill='%2390910e' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%2397980e' cx='50' cy='300' r='50'/%3E%3Cg fill='%239e9e0e' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a5a50e' cx='50' cy='400' r='50'/%3E%3Cg fill='%23acac0d' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b3b20d' cx='50' cy='500' r='50'/%3E%3Cg fill='%23bbb90c' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c2c00c' cx='50' cy='600' r='50'/%3E%3Cg fill='%23c9c70b' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d1ce0a' cx='50' cy='700' r='50'/%3E%3Cg fill='%23d8d509' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e0dc07' cx='50' cy='800' r='50'/%3E%3Cg fill='%23e8e306' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23efea04' cx='50' cy='900' r='50'/%3E%3Cg fill='%23f7f102' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FFF800' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
-background-attachment: fixed;
-background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%236F710D' cx='50' cy='0' r='50'/%3E%3Cg fill='%2375770d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%237c7e0e' cx='50' cy='100' r='50'/%3E%3Cg fill='%2383840e' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23898b0e' cx='50' cy='200' r='50'/%3E%3Cg fill='%2390910e' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%2397980e' cx='50' cy='300' r='50'/%3E%3Cg fill='%239e9e0e' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a5a50e' cx='50' cy='400' r='50'/%3E%3Cg fill='%23acac0d' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b3b20d' cx='50' cy='500' r='50'/%3E%3Cg fill='%23bbb90c' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c2c00c' cx='50' cy='600' r='50'/%3E%3Cg fill='%23c9c70b' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d1ce0a' cx='50' cy='700' r='50'/%3E%3Cg fill='%23d8d509' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e0dc07' cx='50' cy='800' r='50'/%3E%3Cg fill='%23e8e306' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23efea04' cx='50' cy='900' r='50'/%3E%3Cg fill='%23f7f102' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FFF800' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
 }
 
 .back-to-home {
@@ -453,4 +448,11 @@ background-size: contain;
 .back-to-home:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(216, 240, 5, 0.4);
+}
+
+body.pokedex {
+    background-color: #9EA018;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%239EA018' cx='50' cy='0' r='50'/%3E%3Cg fill='%23a3a418' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a7a918' cx='50' cy='100' r='50'/%3E%3Cg fill='%23acad17' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b0b117' cx='50' cy='200' r='50'/%3E%3Cg fill='%23b5b516' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%23baba16' cx='50' cy='300' r='50'/%3E%3Cg fill='%23bebe15' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c3c315' cx='50' cy='400' r='50'/%3E%3Cg fill='%23c8c714' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23cdcb13' cx='50' cy='500' r='50'/%3E%3Cg fill='%23d2d012' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23d7d411' cx='50' cy='600' r='50'/%3E%3Cg fill='%23dbd90f' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23e0dd0e' cx='50' cy='700' r='50'/%3E%3Cg fill='%23e5e20c' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23ebe60a' cx='50' cy='800' r='50'/%3E%3Cg fill='%23f0ea08' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23f5ef05' cx='50' cy='900' r='50'/%3E%3Cg fill='%23faf303' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23FFF800' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
 }
