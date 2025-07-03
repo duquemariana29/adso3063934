@@ -429,8 +429,8 @@ body.pokedex {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-light));
-    color: var(--clr-white);
+  background-color: #9EA018;
+    
     padding: 1rem 2rem;
     border-radius: 50px;
     font-weight: 600;
