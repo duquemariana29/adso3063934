@@ -4,26 +4,829 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12- Challenge-memory-game</title>
+    <title>12-Challenge-memory-game</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="../css/master.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <style>
+ /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffd700 0%, #ffeb3b 50%, #ff9800 100%);
+    min-height: 100vh;
+    padding: 20px;
+    background-size: 400% 400%;
+    animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Navegación */
+.nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.nav a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.nav svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+}
+
+/* Header principal */
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* CENTRAR LA SECCIÓN CON FLEXBOX */
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+}
+
+/* Contenedor del juego */
+.container {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffeb3b 50%, #ffd54f 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    background-size: 200% 200%;
+    animation: containerGlow 4s ease infinite;
+    transition: all 0.3s ease;
+}
+
+@keyframes containerGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header del juego */
+.container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.container header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.restart {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.restart:hover {
+    background: #ff5252;
+    transform: scale(1.1) rotate(180deg);
+}
+
+.restart i {
+    transition: transform 0.3s ease;
+}
+
+.restart:hover i {
+    transform: rotate(360deg);
+}
+
+.score-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.score-item {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Grid de cartas */
+.deck {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    border-radius: 15px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid transparent;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    pointer-events: none;
+}
+
+.card:hover:not(.disabled) {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* MEJORAS PARA PERSONAJES/IMÁGENES */
+.card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    opacity: 0;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    /* Mejora la nitidez de las imágenes */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    /* Para imágenes vectoriales */
+    image-rendering: auto;
+}
+
+/* Contenedor especial para personajes */
+.card .character-container {
+    width: 85%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 10px;
+    position: relative;
+}
+
+.card .character-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffd93d, #6c5ce7);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Estados de las cartas MEJORADOS */
+.card.open,
+.card.show {
+    background: linear-gradient(145deg, #ecf0f1, #bdc3c7);
+    transform: rotateY(0deg) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card.open img,
+.card.show img {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) 
+            contrast(1.2) 
+            saturate(1.3) 
+            brightness(1.1);
+}
+
+.card.open .character-container::before,
+.card.show .character-container::before {
+    opacity: 0.3;
+}
+
+.card.match {
+    background: linear-gradient(145deg, #27ae60, #2ecc71);
+    transform: scale(1.15);
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4);
+    border-color: #1abc9c;
+    animation: matchGlow 0.6s ease-in-out;
+}
+
+@keyframes matchGlow {
+    0% { box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4); }
+    50% { box-shadow: 0 15px 40px rgba(39, 174, 96, 0.8); }
+    100% { box-shadow: 0 10px 30px rgba(39, 174, 96, 0.4); }
+}
+
+.card.match img {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)) 
+            contrast(1.3) 
+            saturate(1.4) 
+            brightness(1.2)
+            hue-rotate(10deg);
+}
+
+.card.match .character-container::before {
+    opacity: 0.6;
+}
+
+.card.unmatched {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    animation: shake 0.5s ease-in-out;
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+}
+
+.card.unmatched img {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) 
+            contrast(1.1) 
+            saturate(0.8) 
+            brightness(0.9);
+}
+
+.card.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+/* Animación de shake para cartas incorrectas MEJORADA */
+@keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-8px) rotate(-2deg); }
+    75% { transform: translateX(8px) rotate(2deg); }
+}
+
+/* EFECTOS ESPECIALES PARA PERSONAJES */
+.card img[alt*="special"], 
+.card img[data-special="true"] {
+    animation: specialGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes specialGlow {
+    0% { 
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) 
+                contrast(1.2) 
+                saturate(1.3) 
+                brightness(1.1); 
+    }
+    100% { 
+        filter: drop-shadow(0 6px 12px rgba(255, 215, 0, 0.6)) 
+                contrast(1.4) 
+                saturate(1.5) 
+                brightness(1.3); 
+    }
+}
+
+/* Mejoras para dispositivos con alta densidad de píxeles */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Popup/Modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+.overlay.show .popup {
+    transform: scale(1);
+}
+
+.popup h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+.content-1 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.content-2 {
+    margin-bottom: 30px;
+}
+
+.content-2 p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.result {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#play-again {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#play-again:hover {
+    background: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .container header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .deck {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .container header h1 {
+        font-size: 2rem;
+    }
+    
+    .section {
+        min-height: calc(100vh - 150px);
+    }
+    
+    .card img {
+        width: 75%;
+        height: 75%;
+    }
+}
+
+@media (max-width: 480px) {
+    .deck {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .container header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .card img {
+        width: 70%;
+        height: 70%;
+    }
+}
+    </style>
 </head>
 
 <body class="jquery">
     <nav class="nav">
-        <a href="/09-jQuery/index.html">
-            <svg class="jQuery" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+        <a href="index.html">
+            <svg class="jquery" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
             </svg>
         </a>
     </nav>
     <main>
         <header class="header">
-            <h2>12- Challenge-memory-game</h2>
+            <h2>12-Challenge-memory-game</h2>
             <p>Build a memory game using jQuery.</p>
         </header>
         <section class="section">
-         </section>
+            <div class="container">
+                <header>
+                    <h1>🦊Juego de Memoria </h1>
+                    <div class="restart" onclick="startGame()">
+                        <i class="fas fa-redo-alt"></i>
+                    </div>
+                    <section class="score-panel">
+                        <span class="moves score-item">0</span><span style="margin-left: 1.1rem;"></span>
+                        <div class="timer score-item"></div>
+                    </section>
+                </header>
+                <ul class="deck" id="card-deck">
+                    <li class="card" data-card="naruto">
+                        <img src="img/naruto.png" alt="Naruto">
+                    </li>
+                    <li class="card" data-card="sasuke">
+                        <img src="img/sasuke.png" alt="Sasuke">
+                    </li>
+                    <li class="card" data-card="sakura">
+                        <img src="img/sakura.png" alt="Sakura">
+                    </li>
+                    <li class="card" data-card="kakashi">
+                        <img src="img/kakashi.png" alt="Kakashi">
+                    </li>
+                    <li class="card" data-card="itachi">
+                        <img src="img/itachi.png" alt="Itachi">
+                    </li>
+                    <li class="card" data-card="minato">
+                        <img src="img/minato.png" Minato">
+                    </li>
+                    <li class="card" data-card="jiraiya">
+                        <img src="img/jiraiya.png" alt="Jiraiya">
+                    </li>
+                    <li class="card" data-card="shikamaru">
+                        <img src="img/shikamaru.png" alt="Shikamaru">
+                    </li>
+                    <li class="card" data-card="naruto">
+                        <img src="img/naruto.png" alt="Naruto">
+                    </li>
+                    <li class="card" data-card="sasuke">
+                        <img src="img/sasuke.png" alt="Sasuke">
+                    </li>
+                    <li class="card" data-card="sakura">
+                        <img src="img/sakura.png" alt="Sakura">
+                    </li>
+                    <li class="card" data-card="kakashi">
+                        <img src="img/kakashi.png" alt="Kakashi">
+                    </li>
+                    <li class="card" data-card="itachi">
+                        <img src="img/itachi.png" alt="Itachi">
+                    </li>
+                    <li class="card" data-card="minato">
+                        <img src="img/minato.png" alt="Minato">
+                    </li>
+                    <li class="card" data-card="jiraiya">
+                        <img src="img/jiraiya.png" alt="Jiraiya">
+                    </li>
+                    <li class="card" data-card="shikamaru">
+                        <img src="img/shikamaru.png" alt="Shikamaru">
+                    </li>
+                </ul>
+
+                <div id="popup1" class="overlay">
+                    <div class="popup">
+                        <h2>Felicidades</h2>
+                        <a class="close" href=#>×</a>
+                        <div class="content-1">
+                            ¡Conseguiste adivinar todas las tarjetas!
+                        </div>
+                        <div class="content-2">
+                            <p>Hiciste <span id=finalMove class="result"> </span> movimientos </p>
+                            <p>en <span id=totalTime class="result"> </span> ! </p>
+                        </div>
+                        <button id="play-again" onclick="playAgain()">
+                            Jugar de nuevo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // arreglo cards contiene todas las cartas
+            let cards = $(".card").toArray();
+
+            // mazo de todas las cartas en el juego
+            const $deck = $("#card-deck");
+
+            // declarando variable de movimientos
+            let moves = 0;
+            let $counter = $(".moves");
+
+            // declarar variables para iconos de estrella (aunque no se usan visualmente ahora)
+            const $stars = $(".fa-star"); // Mantengo esto para no romper la lógica de `starRating()`
+
+            // icono cerrar en modal
+            let $closeicon = $(".close");
+
+            // declarar modal
+            let $modal = $("#popup1");
+
+            // arreglo para cartas abiertas
+            var openedCards = [];
+
+            // variables del temporizador
+            var second = 0, minute = 0, hour = 0;
+            var $timer = $(".timer");
+            var interval;
+
+            // mezcla cartas
+            // @param {array}
+            // @returns shuffledarray
+            function shuffle(array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+
+                while (currentIndex !== 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+
+            // mezcla cartas cuando la página se actualiza / carga
+            startGame();
+
+            // función para iniciar un nuevo juego
+            function startGame() {
+                // detener el temporizador anterior si existe
+                if (interval) {
+                    clearInterval(interval);
+                }
+
+                // mezclar mazo
+                cards = shuffle(cards);
+                // remover todas las clases existentes de cada carta
+                $deck.empty();
+
+                $.each(cards, function (i, card) {
+                    $deck.append(card);
+                    $(card).removeClass("show open match disabled unmatched no-event");
+                });
+
+                // reiniciar movimientos
+                moves = 0;
+                $counter.html(moves);
+
+                // reiniciar temporizador
+                second = 0;
+                minute = 0;
+                hour = 0;
+                $timer.html("00 : 00");
+
+                // limpiar arreglo de cartas abiertas
+                openedCards = [];
+
+                // reiniciar estrellas si tienes sistema de puntuación
+                $stars.removeClass("fa-star-o").addClass("fa-star");
+
+                // ocultar modal si está visible
+                $modal.removeClass("show");
+            }
+
+            // alterna clases open y show para mostrar cartas
+            var displayCard = function () {
+                $(this).toggleClass("open show disabled");
+            };
+
+            // agregar cartas abiertas a la lista OpenedCards y verificar si las cartas coinciden o no
+            function cardOpen() {
+                openedCards.push(this);
+                var len = openedCards.length;
+                if (len === 2) {
+                    moveCounter();
+                    // Ahora comparamos el atributo data-card
+                    if ($(openedCards[0]).attr('data-card') === $(openedCards[1]).attr('data-card')) {
+                        matched();
+                    } else {
+                        unmatched();
+                    }
+                }
+            }
+
+            //  cuando las cartas coinciden
+            function matched() {
+                $(openedCards[0]).addClass("match disabled").removeClass("show open no-event");
+                $(openedCards[1]).addClass("match disabled").removeClass("show open no-event");
+                openedCards = [];
+                // verificar si el juego terminó después de cada coincidencia
+                checkGameEnd();
+            }
+
+            // descripción cuando las cartas no coinciden
+            function unmatched() {
+                $(openedCards[0]).addClass("unmatched");
+                $(openedCards[1]).addClass("unmatched");
+                disable();
+                setTimeout(function () {
+                    $(openedCards[0]).removeClass("show open no-event unmatched");
+                    $(openedCards[1]).removeClass("show open no-event unmatched");
+                    enable();
+                    openedCards = [];
+                }, 1100);
+            }
+
+            //  deshabilitar cartas temporalmente
+            function disable() {
+                $(".card").addClass('disabled');
+            }
+
+            //  habilitar cartas y deshabilitar cartas coincidentes
+            function enable() {
+                $(".card").removeClass('disabled');
+                $(".match").addClass("disabled");
+            }
+
+            //  contar movimientos del jugador
+            function moveCounter() {
+                moves++;
+                $counter.html(moves);
+                //iniciar temporizador en el primer clic
+                if (moves == 1) {
+                    second = 0;
+                    minute = 0;
+                    hour = 0;
+                    startTimer();
+                }
+                // actualizar estrellas basado en movimientos (opcional)
+                starRating();
+            }
+
+            // sistema de calificación con estrellas (opcional)
+            function starRating() {
+                if (moves > 8 && moves <= 12) {
+                    // Si tienes estrellas visibles, podrías cambiar su estado aquí
+                } else if (moves > 12) {
+                    // Si tienes estrellas visibles, podrías cambiar su estado aquí
+                }
+            }
+
+            //  temporizador del juego
+            function startTimer() {
+                interval = setInterval(function () {
+                    $timer.html(minute + " : " + second);
+                    second++;
+                    if (second == 60) {
+                        minute++;
+                        second = 0;
+                    }
+                    if (minute == 60) {
+                        hour++;
+                        minute = 0;
+                    }
+                }, 1000);
+            }
+
+            //  función para verificar si el juego terminó (sin mostrar modal)
+            function checkGameEnd() {
+                // contar cartas coincidentes actuales
+                var matchedCards = $(".match").length;
+
+                // Si todas las cartas (16) han sido emparejadas, el juego termina
+                if (matchedCards === 16) {
+                    clearInterval(interval);
+                    // Mostrar el modal de felicitación
+                    var finalTime = $timer.html();
+                    $("#totalTime").text(finalTime);
+                    $("#finalMove").text(moves);
+                    $modal.addClass("show");
+                }
+            }
+
+            //  para que el usuario juegue de nuevo
+            function playAgain() {
+                $modal.removeClass("show");
+                startGame();
+            }
+
+            // Agregar event listener para botón de reinicio
+            $(".restart").on('click', function () {
+                startGame();
+            });
+
+            // Agregar event listeners a cada carta
+            $(document).on('click', '.card:not(.disabled)', function () {
+                // prevenir clicks en cartas ya abiertas o coincidentes
+                if ($(this).hasClass('open') || $(this).hasClass('match')) {
+                    return;
+                }
+
+                displayCard.call(this);
+                cardOpen.call(this);
+            });
+
+            // Hacer la función playAgain accesible globalmente si es necesario
+            window.playAgain = playAgain;
+        });
+    </script>
 </body>
+
 </html>
